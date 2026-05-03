@@ -46,7 +46,7 @@ export const EmployeeProvider = ({ children }) => {
   //--------------------mark employee attendance---------------------//
   const insertAttendance = async (status) => {
     try {
-      if (!window.confirm(`Are you sure to apply leave.??`)) {
+      if (!window.confirm(`Are you sure to Mark Attendance.??`)) {
         toast.error("Attendance Marking cancelled");
         return;
       }
