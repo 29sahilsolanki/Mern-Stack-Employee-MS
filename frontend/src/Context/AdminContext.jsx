@@ -23,7 +23,7 @@ export const AdminProvider = ({ children }) => {
 
   const employeeLogin = async () => {
     try {
-      const url = "http://localhost:8000/ems/login-employee";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/login-employee";
       const res = await axios.post(url, input);
       console.log(res?.data);
       const { name, role, jwtToken } = res.data;
@@ -61,7 +61,7 @@ export const AdminProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const fetchEmployees = async () => {
     try {
-      const url = "http://localhost:8000/ems/employees";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/employees";
       const res = await axios.get(url, { headers: { Authorization: token } });
       const newData = res?.data?.employeeRes.filter((p) => p.role !== "admin");
       setData(newData);
@@ -84,7 +84,7 @@ export const AdminProvider = ({ children }) => {
   const [attendance, setAttendance] = useState([]);
   const fetchAttendanceByDate = async () => {
     try {
-      const url = "http://localhost:8000/ems/attendanceby-date";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/attendanceby-date";
       const res = await axios.get(url, {
         params: { date },
         headers: { Authorization: token },
@@ -108,7 +108,7 @@ export const AdminProvider = ({ children }) => {
   //----------------update attendance-----------------//
   const updateAttendance = async (id, status) => {
     try {
-      const url = `http://localhost:8000/ems/update-attendance/${id}`;
+      const url = `https://employee-ms-backend-2dci.onrender.com/ems/update-attendance/${id}`;
       const res = await axios.put(
         url,
         { status },
@@ -127,7 +127,7 @@ export const AdminProvider = ({ children }) => {
 
   const fetchLeaves = async () => {
     try {
-      const url = "http://localhost:8000/ems/leaves";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/leaves";
       const res = await axios.get(url, { headers: { Authorization: token } });
       setLeaveData(res?.data?.leaveRes);
     } catch (error) {
@@ -144,7 +144,7 @@ export const AdminProvider = ({ children }) => {
 
   const updateLeaves = async (id, status) => {
     try {
-      const url = "http://localhost:8000/ems/update-leaves";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/update-leaves";
       const res = await axios.put(
         url,
         { status },
@@ -166,7 +166,7 @@ export const AdminProvider = ({ children }) => {
   const [query, setQuery] = useState("");
   const fetchSingleEmployee = async () => {
     try {
-      const url = `http://localhost:8000/ems/search-employee/${query}`;
+      const url = `https://employee-ms-backend-2dci.onrender.com/ems/search-employee/${query}`;
       const res = await axios.get(url, { headers: { Authorization: token } });
       setSingleEmployee(res?.data?.findEmployee);
       setQuery("");
@@ -181,7 +181,7 @@ export const AdminProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const appliedLeaveDetails = async (req, res) => {
     try {
-      const url = "http://localhost:8000/ems/applied-leave-details";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/applied-leave-details";
       const res = await axios.get(url, {
         params: { email },
         headers: { Authorization: token },
@@ -198,7 +198,7 @@ export const AdminProvider = ({ children }) => {
 
   const deleteLeaveRecord = async (id) => {
     try {
-      const url = `http://localhost:8000/ems/delete-leaves/${id}`;
+      const url = `https://employee-ms-backend-2dci.onrender.com/ems/delete-leaves/${id}`;
       const res = await axios.delete(url, {
         headers: { Authorization: token },
       });
@@ -217,7 +217,7 @@ export const AdminProvider = ({ children }) => {
 
   const deleteEmployee = async (id) => {
     try {
-      const url = `http://localhost:8000/ems/delete-employee/${id}`;
+      const url = `https://employee-ms-backend-2dci.onrender.com/ems/delete-employee/${id}`;
       const res = await axios.delete(url, {
         headers: { Authorization: token },
       });
