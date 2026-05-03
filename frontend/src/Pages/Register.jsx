@@ -18,7 +18,7 @@ export default function Register() {
   const navigate = useNavigate();
   const registerEmployee = async () => {
     try {
-      const url = "http://localhost:8000/ems/register-employee";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/register-employee";
       const res = await axios.post(url, input, {
         headers: { Authorization: token },
       });
