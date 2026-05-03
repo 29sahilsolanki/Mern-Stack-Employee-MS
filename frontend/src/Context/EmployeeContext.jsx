@@ -11,7 +11,7 @@ export const EmployeeProvider = ({ children }) => {
   const [employee, setEmployee] = useState("");
   const employeeDetails = async () => {
     try {
-      const url = "http://localhost:8000/ems/employee-details";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/employee-details";
       const res = await axios.get(url, { headers: { Authorization: token } });
       setEmployee(res?.data?.employeeRes);
     } catch (error) {
@@ -29,7 +29,7 @@ export const EmployeeProvider = ({ children }) => {
   const [attendance, setAttendance] = useState([]);
   const employeeAttendance = async () => {
     try {
-      const url = "http://localhost:8000/ems/employee-attendance";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/employee-attendance";
       const res = await axios.get(url, { headers: { Authorization: token } });
       setAttendance(res?.data?.attendanceRes);
     } catch (error) {
@@ -50,7 +50,7 @@ export const EmployeeProvider = ({ children }) => {
         toast.error("Attendance Marking cancelled");
         return;
       }
-      const url = "http://localhost:8000/ems/insert-attendance";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/insert-attendance";
       const res = await axios.post(
         url,
         { status },
@@ -70,7 +70,7 @@ export const EmployeeProvider = ({ children }) => {
   const [attByDate, setAttByDate] = useState([]);
   const attendanceByDate = async () => {
     try {
-      const url = "http://localhost:8000/ems/attendancebydate";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/attendancebydate";
       const res = await axios.get(url, {
         params: { date },
         headers: { Authorization: token },
@@ -89,7 +89,7 @@ export const EmployeeProvider = ({ children }) => {
   const [leave, setLeave] = useState([]);
   const empLeaveDetails = async () => {
     try {
-      const url = "http://localhost:8000/ems/empleave-details";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/empleave-details";
       const res = await axios.get(url, { headers: { Authorization: token } });
       setLeave(res?.data?.leaveRes);
     } catch (error) {
@@ -116,7 +116,7 @@ export const EmployeeProvider = ({ children }) => {
         return;
       }
 
-      const url = "http://localhost:8000/ems/apply-leaves";
+      const url = "https://employee-ms-backend-2dci.onrender.com/ems/apply-leaves";
       const res = await axios.post(
         url,
         { startDate, endDate, reason },
