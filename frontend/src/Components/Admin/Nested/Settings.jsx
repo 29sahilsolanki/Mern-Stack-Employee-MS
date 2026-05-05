@@ -49,7 +49,7 @@ export default function Settings() {
               required
               placeholder="Enter Employee Id or Name..."
               value={query}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={(e) => setQuery(e.target.value.toLowerCase())}
               className="flex-1 border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
             />
             <button
@@ -113,7 +113,7 @@ export default function Settings() {
               required
               placeholder="Enter employee email..."
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
               className="flex-1 border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
             />
             <button
