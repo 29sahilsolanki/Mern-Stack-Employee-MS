@@ -9,6 +9,20 @@ export default function Login() {
     employeeLogin();
   }
 
+  // Demo login handler
+  function handleDemoLogin() {
+    const demoCredentials = {
+      email: "sahil@gmail.com",
+      password: "12345",
+    };
+
+    // Update input state
+    setInput(demoCredentials);
+
+    // Call employeeLogin with demo credentials directly
+    employeeLogin(demoCredentials);
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
       <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8">
@@ -49,6 +63,14 @@ export default function Login() {
             className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-700 transition-transform transform hover:scale-105"
           >
             Login
+          </button>
+          {/* Demo Login Button */}
+          <button
+            type="button"
+            onClick={handleDemoLogin}
+            className="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded-lg shadow-md hover:bg-gray-300 transition-transform transform hover:scale-105 mt-3"
+          >
+            Demo Login
           </button>
         </form>
 

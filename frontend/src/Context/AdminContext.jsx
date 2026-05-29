@@ -21,11 +21,13 @@ export const AdminProvider = ({ children }) => {
     setToken(localStorage.getItem("token") || "");
   }, []);
 
-  const employeeLogin = async () => {
+  const employeeLogin = async (credentials) => {
     try {
-      const url = "https://employee-ms-backend-2dci.onrender.com/ems/login-employee";
-      const res = await axios.post(url, input);
-      console.log(res?.data);
+      const loginData = credentials || input;
+      const url =
+        "https://employee-ms-backend-2dci.onrender.com/ems/login-employee";
+      const res = await axios.post(url, loginData);
+
       const { name, role, jwtToken } = res.data;
 
       localStorage.setItem("name", name);
@@ -40,7 +42,6 @@ export const AdminProvider = ({ children }) => {
 
       toast.success(res.data.message || "login successfully");
     } catch (error) {
-      //   console.log(error?.response?.data);
       toast.error(error?.response?.data?.message);
     }
   };
@@ -84,7 +85,8 @@ export const AdminProvider = ({ children }) => {
   const [attendance, setAttendance] = useState([]);
   const fetchAttendanceByDate = async () => {
     try {
-      const url = "https://employee-ms-backend-2dci.onrender.com/ems/attendanceby-date";
+      const url =
+        "https://employee-ms-backend-2dci.onrender.com/ems/attendanceby-date";
       const res = await axios.get(url, {
         params: { date },
         headers: { Authorization: token },
@@ -144,7 +146,8 @@ export const AdminProvider = ({ children }) => {
 
   const updateLeaves = async (id, status) => {
     try {
-      const url = "https://employee-ms-backend-2dci.onrender.com/ems/update-leaves";
+      const url =
+        "https://employee-ms-backend-2dci.onrender.com/ems/update-leaves";
       const res = await axios.put(
         url,
         { status },
@@ -181,7 +184,8 @@ export const AdminProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const appliedLeaveDetails = async (req, res) => {
     try {
-      const url = "https://employee-ms-backend-2dci.onrender.com/ems/applied-leave-details";
+      const url =
+        "https://employee-ms-backend-2dci.onrender.com/ems/applied-leave-details";
       const res = await axios.get(url, {
         params: { email },
         headers: { Authorization: token },
