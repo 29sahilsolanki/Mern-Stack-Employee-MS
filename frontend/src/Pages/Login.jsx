@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../Context/AdminContext";
 
 export default function Login() {
-  const { input, setInput, employeeLogin } = useAuth();
+  const { input, setInput, employeeLogin, loading } = useAuth();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -10,21 +10,22 @@ export default function Login() {
   }
 
   // Demo login handler
-  function handleDemoLogin() {
-    const demoCredentials = {
-      email: "sahil@gmail.com",
-      password: "12345",
-    };
+  function handleUserLogin() {
+    employeeLogin({ email: "sahil@gmail.com", password: "12345" });
+  }
 
-    // Update input state
-    setInput(demoCredentials);
-
-    // Call employeeLogin with demo credentials directly
-    employeeLogin(demoCredentials);
+  function handleAdminLogin() {
+    employeeLogin({ email: "admin@gmail.com", password: "admin" });
   }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500">
+      {/* Fullscreen Loader Overlay */}
+      {loading && (
+        <div className="fixed inset-0 bg-indigo-600 bg-opacity-30 flex items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-indigo-500 border-b-4 border-white"></div>
+        </div>
+      )}
       <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8">
         <h1 className="text-3xl font-extrabold text-center text-indigo-700 mb-6">
           Employee Login
@@ -65,13 +66,22 @@ export default function Login() {
             Login
           </button>
           {/* Demo Login Button */}
-          <button
-            type="button"
-            onClick={handleDemoLogin}
-            className="w-full bg-gray-200 text-gray-800 font-semibold py-2 rounded-lg shadow-md hover:bg-gray-300 transition-transform transform hover:scale-105 mt-3"
-          >
-            Demo Login
-          </button>
+          <div className="flex justify-between gap-4 w-full mt-3">
+            <button
+              type="button"
+              onClick={handleUserLogin}
+              className="cursor-pointer w-1/2 bg-gray-200 text-gray-800 font-semibold py-2 rounded-md shadow-md hover:bg-gray-300 transition-transform transform hover:scale-105"
+            >
+              Login as user
+            </button>
+            <button
+              type="button"
+              onClick={handleAdminLogin}
+              className="cursor-pointer w-1/2 bg-gray-200 text-gray-800 font-semibold py-2 rounded-md shadow-md hover:bg-gray-300 transition-transform transform hover:scale-105 "
+            >
+              Login as admin
+            </button>
+          </div>
         </form>
 
         <p className="text-center mt-6 text-sm text-gray-600">

@@ -21,8 +21,11 @@ export const AdminProvider = ({ children }) => {
     setToken(localStorage.getItem("token") || "");
   }, []);
 
+  const [loading, setLoading] = useState(false);
+
   const employeeLogin = async (credentials) => {
     try {
+      setLoading(true);
       const loginData = credentials || input;
       const url =
         "https://employee-ms-backend-2dci.onrender.com/ems/login-employee";
@@ -43,6 +46,8 @@ export const AdminProvider = ({ children }) => {
       toast.success(res.data.message || "login successfully");
     } catch (error) {
       toast.error(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -254,6 +259,7 @@ export const AdminProvider = ({ children }) => {
         singleEmployee,
         empAppliedLeave,
         email,
+        loading,
         setEmail,
         setQuery,
         setIsOpen,
