@@ -1,6 +1,6 @@
 export default function EmployeeSettings() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-6">
+    <div className="flex items-center justify-center min-h-150 bg-gray-50 ">
       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md text-center">
         <h1 className="text-3xl font-bold text-indigo-600 mb-4">Settings</h1>
         <p className="text-gray-600 italic text-lg">

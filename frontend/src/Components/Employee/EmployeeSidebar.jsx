@@ -7,17 +7,14 @@ export default function EmployeeSidebar() {
   return (
     <div
       className={`
-        h-screen w-64 bg-indigo-700 text-white flex flex-col
-        ${isOpen ? "hidden" : "block"}   /* mobile toggle */
-        sm:flex                         /* always visible on sm+ */
-        transition-all duration-300
-      `}
+    fixed top-10 left-0 h-[calc(120vh-80px)] w-64
+    bg-indigo-700 text-white flex flex-col
+    sm:flex
+    transition-all duration-300
+    z-40
+  `}
     >
-      <div className="p-6">
-        <h3 className="text-2xl font-bold">Employee MS</h3>
-      </div>
-
-      <div className="flex-1 p-4 space-y-2">
+      <div className="flex-1 p-4 space-y-2 mt-8">
         <NavLink
           to="/employee-dashboard"
           end

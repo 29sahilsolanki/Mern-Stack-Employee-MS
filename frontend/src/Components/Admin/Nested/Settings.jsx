@@ -33,9 +33,9 @@ export default function Settings() {
   }
 
   return (
-    <div className="min-h-160 bg-gray-100 p-6 flex flex-col items-center space-y-10">
+    <div className="min-h-160 p-6 flex flex-col items-center space-y-10">
       {/* Clear Employee Records */}
-      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6 border border-gray-200">
+      <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg md:mt-20 p-6 border border-gray-200">
         <h1 className="text-2xl font-bold text-indigo-700 mb-6 text-center">
           Clear Employee Records
         </h1>

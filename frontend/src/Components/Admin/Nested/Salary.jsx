@@ -21,7 +21,7 @@ export default function Salary() {
     .reduce((sum, emp) => sum + Number(emp.salary), 0);
 
   return (
-    <div className="p-6 bg-gray-50 min-h-150">
+    <div className="p-6  min-h-150">
       {/* Monthly Expenditure Card */}
       <div className="bg-indigo-600 text-white rounded-lg shadow-md p-6 mb-6">
         <h1 className="text-2xl font-bold">Monthly Expenditure</h1>

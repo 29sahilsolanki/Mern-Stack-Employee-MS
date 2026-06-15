@@ -1,23 +1,21 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import EmployeeSidebar from "./EmployeeSidebar";
+import { useAuth } from "../../Context/AdminContext";
+import Footer from "../Footer/Footer";
 
 export default function EmployeeDashboard() {
+  const { isOpen, setIsOpen } = useAuth();
   return (
-    <div className="flex h-screen">
+    <div>
       <div>
-        <EmployeeSidebar />
+        <Navbar />
+        {isOpen ? <EmployeeSidebar /> : ""}
       </div>
-
-      <div className="flex-1 flex flex-col">
-        <div className="h-20 bg-indigo-700">
-          <Navbar />
-        </div>
-
-        <div className="flex-1">
-          <Outlet />
-        </div>
+      <div className={`mt-16 ${isOpen ? "ml-64" : ""}`}>
+        <Outlet />
       </div>
+      <Footer />
     </div>
   );
 }

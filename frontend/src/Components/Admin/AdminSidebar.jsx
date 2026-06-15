@@ -2,22 +2,19 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Context/AdminContext";
 
 export default function AdminSidebar() {
-  const { isOpen } = useAuth();
+  const { isOpen, setIsOpen } = useAuth();
 
   return (
     <div
       className={`
-        h-screen w-64 bg-indigo-700 text-white flex flex-col
-        ${isOpen ? "hidden" : "block"}   /* mobile toggle */
-        sm:flex                         /* always visible on sm+ */
-        transition-all duration-300
-      `}
+    fixed top-10 left-0 h-[calc(120vh-80px)] w-64
+    bg-indigo-700 text-white flex flex-col
+    sm:flex
+    transition-all duration-300
+    z-40
+  `}
     >
-      <div className="p-6">
-        <h3 className="text-2xl font-bold">Employee MS</h3>
-      </div>
-
-      <div className="flex-1 p-4 space-y-2">
+      <div className="flex-1 p-4 space-y-2 mt-10">
         <NavLink
           to="/admin-dashboard"
           end
@@ -26,6 +23,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Dashboard
         </NavLink>
@@ -36,6 +34,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Employees
         </NavLink>
@@ -46,6 +45,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Mark Attendance
         </NavLink>
@@ -56,6 +56,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Leaves
         </NavLink>
@@ -66,6 +67,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Salary
         </NavLink>
@@ -76,6 +78,7 @@ export default function AdminSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Settings
         </NavLink>

@@ -16,7 +16,7 @@ export default function EmployeeAttendance() {
     employeeDetails();
   }
 
-  // check if today's attendance already marked
+  // Check if today's attendance is already marked
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -25,22 +25,24 @@ export default function EmployeeAttendance() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
-      {/* Responsive layout for attendance cards */}
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-        {/* Attendance Marking Card */}
-        <div className="w-full md:flex-1 bg-white shadow-md rounded-lg p-4 sm:p-6">
+    <div className="min-h-screen bg-gray-100 pt-10 px-4 sm:px-6 pb-6">
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-6">
+        {/* Mark Attendance Card */}
+        <div className="w-full lg:flex-1 bg-white shadow-md rounded-lg p-4 sm:p-6">
           <h1 className="text-xl sm:text-2xl font-bold text-indigo-700 mb-4">
             Mark Today's Attendance
           </h1>
+
           <p className="text-gray-700 mb-1">
-            <span className="font-semibold">Employee Id:</span>{" "}
+            <span className="font-semibold">Employee ID:</span>{" "}
             {employee?.employeeId}
           </p>
+
           <p className="text-gray-700 mb-1">
             <span className="font-semibold">Name:</span> {employee?.name}
           </p>
-          <p className="text-gray-700 mb-4">
+
+          <p className="text-gray-700 mb-4 break-all">
             <span className="font-semibold">Email:</span> {employee?.email}
           </p>
 
@@ -48,88 +50,111 @@ export default function EmployeeAttendance() {
             <button
               type="button"
               disabled={alreadyMarked}
-              className={`flex-1 py-2 rounded-md transition-colors duration-300 
-                ${alreadyMarked ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-600 text-white"}`}
+              className={`flex-1 py-2 rounded-md text-white transition-colors duration-300 ${
+                alreadyMarked
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-green-500 hover:bg-green-600"
+              }`}
               onClick={() => handleAttendance("present")}
             >
               Mark Present
             </button>
+
             <button
               type="button"
               disabled={alreadyMarked}
-              className={`flex-1 py-2 rounded-md transition-colors duration-300 
-                ${alreadyMarked ? "bg-gray-400 cursor-not-allowed" : "bg-red-500 hover:bg-red-600 text-white"}`}
+              className={`flex-1 py-2 rounded-md text-white transition-colors duration-300 ${
+                alreadyMarked
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-red-500 hover:bg-red-600"
+              }`}
               onClick={() => handleAttendance("absent")}
             >
               Mark Absent
             </button>
           </div>
+
           {alreadyMarked && (
-            <p className="text-sm text-gray-600 mt-2 italic">
+            <p className="text-sm text-gray-600 mt-3 italic">
               Attendance already marked for today.
             </p>
           )}
         </div>
 
         {/* Previous Attendance Card */}
-        <div className="w-full md:flex-1 bg-white shadow-md rounded-lg p-4 sm:p-6">
+        <div className="w-full lg:flex-1 bg-white shadow-md rounded-lg p-4 sm:p-6">
           <h2 className="text-lg sm:text-xl font-semibold text-indigo-700 mb-4">
             Previous Attendances
           </h2>
-          {attendance
+
+          {[...attendance]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 5)
             .map((emp) => (
               <div
                 key={emp._id}
-                className="text-gray-700 mb-2 text-sm sm:text-base"
+                className="border-b border-gray-200 py-2 last:border-b-0"
               >
-                <span className="font-semibold">Date:</span>{" "}
-                {emp.date
-                  ? new Date(emp.date).toLocaleDateString("en-IN", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })
-                  : "N/A"}{" "}
-                <span className="font-semibold">Status:</span>{" "}
-                {emp.status.toUpperCase()}
+                <p className="text-gray-700">
+                  <span className="font-semibold">Date:</span>{" "}
+                  {emp.date
+                    ? new Date(emp.date).toLocaleDateString("en-IN", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "N/A"}
+                </p>
+
+                <p className="text-gray-700">
+                  <span className="font-semibold">Status:</span>{" "}
+                  <span
+                    className={`font-semibold ${
+                      emp.status === "present"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {emp.status?.toUpperCase()}
+                  </span>
+                </p>
               </div>
             ))}
         </div>
       </div>
 
       {/* View Attendance By Date */}
-      <div className="flex justify-center mt-10">
-        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 max-w-3xl w-full">
+      <div className="w-full max-w-6xl mx-auto mt-8">
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6">
           <h1 className="text-xl sm:text-2xl font-bold text-indigo-700 mb-5 text-center">
             View Attendance By Date
           </h1>
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-4">
+
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-6">
             <input
               type="date"
               required
               className="border border-gray-300 rounded-md p-2 w-full sm:w-auto"
               onChange={(e) => setDate(e.target.value)}
             />
+
             <button
               type="button"
               className="bg-indigo-600 text-white rounded-md px-4 py-2 hover:bg-indigo-700 transition w-full sm:w-auto"
-              onClick={() => {
-                attendanceByDate();
-              }}
+              onClick={attendanceByDate}
             >
               Find Attendance
             </button>
           </div>
+
           {attByDate.length > 0 ? (
             <div className="space-y-3">
               {attByDate.map((p) => (
                 <div
                   key={p._id}
-                  className="p-4 bg-indigo-50 rounded-md shadow-sm flex flex-col sm:flex-row justify-between items-center"
+                  className="p-4 bg-indigo-50 rounded-md shadow-sm flex flex-col sm:flex-row justify-between items-center gap-3"
                 >
-                  <div className="text-sm sm:text-base">
+                  <div>
                     <p className="text-gray-700">
                       <span className="font-semibold">Date:</span>{" "}
                       {p.date
@@ -140,17 +165,23 @@ export default function EmployeeAttendance() {
                           })
                         : "N/A"}
                     </p>
+
                     <p className="text-gray-700">
                       <span className="font-semibold">Status:</span>{" "}
-                      {p.status ? p.status.toUpperCase() : "N/A"}
+                      {p.status?.toUpperCase() || "N/A"}
                     </p>
                   </div>
+
                   <span
-                    className={`mt-2 sm:mt-0 px-3 py-1 rounded-full text-xs font-semibold text-white
-                      ${p.status === "present" ? "bg-green-500" : ""}
-                      ${p.status === "absent" ? "bg-red-500" : ""}`}
+                    className={`px-3 py-1 rounded-full text-xs font-semibold text-white ${
+                      p.status === "present"
+                        ? "bg-green-500"
+                        : p.status === "absent"
+                          ? "bg-red-500"
+                          : "bg-gray-500"
+                    }`}
                   >
-                    {p.status ? p.status.toUpperCase() : "N/A"}
+                    {p.status?.toUpperCase() || "N/A"}
                   </span>
                 </div>
               ))}
