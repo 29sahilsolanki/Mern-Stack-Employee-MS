@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Context/AdminContext";
 
 export default function EmployeeSidebar() {
-  const { isOpen } = useAuth();
+  const { isOpen, setIsOpen } = useAuth();
 
   return (
     <div
@@ -23,11 +23,13 @@ export default function EmployeeSidebar() {
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
             }`
           }
+          onClick={() => setIsOpen(false)}
         >
           Dashboard
         </NavLink>
         <NavLink
           to="attendance"
+          onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
             `block px-4 py-2 rounded-md transition-colors duration-200 ${
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
@@ -39,6 +41,7 @@ export default function EmployeeSidebar() {
 
         <NavLink
           to="leaves"
+          onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
             `block px-4 py-2 rounded-md transition-colors duration-200 ${
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"
@@ -50,6 +53,7 @@ export default function EmployeeSidebar() {
 
         <NavLink
           to="settings"
+          onClick={() => setIsOpen(false)}
           className={({ isActive }) =>
             `block px-4 py-2 rounded-md transition-colors duration-200 ${
               isActive ? "bg-indigo-900 font-semibold" : "hover:bg-indigo-800"

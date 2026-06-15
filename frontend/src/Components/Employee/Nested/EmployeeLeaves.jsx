@@ -11,7 +11,7 @@ export default function EmployeeLeaves() {
   return (
     <div className="flex flex-col items-center space-y-12 bg-gray-100 min-h-screen p-4 sm:p-6">
       {/* Apply Leave Card */}
-      <div className="w-full mt-4 max-w-6xl bg-gradient-to-r from-indigo-50 to-indigo-100 shadow-xl rounded-lg p-6 sm:p-8 border border-indigo-200">
+      <div className="w-full mt-4 max-w-6xl bg-linear-to-r from-indigo-50 to-indigo-100 shadow-xl rounded-lg p-6 sm:p-8 border border-indigo-200">
         <h1 className="text-xl sm:text-2xl font-bold text-indigo-700 mb-6 text-center">
           Apply Leave
         </h1>

@@ -1,10 +1,10 @@
 import { useAuth } from "../../Context/AdminContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross1 } from "react-icons/rx";
 
 export default function Navbar() {
-  const { setIsOpen, isOpen, employeeLogout } = useAuth();
+  const { setIsOpen, isOpen, employeeLogout, role } = useAuth();
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -30,7 +30,12 @@ export default function Navbar() {
             onClick={() => setIsOpen(true)}
           />
         )}
-        <p className="text-2xl font-bold text-white">Employee MS</p>
+        <Link
+          to={`${role === "admin" ? "/admin-dashboard" : "/employee-dashboard"}`}
+          className="text-2xl font-bold text-white"
+        >
+          Employee MS
+        </Link>
       </div>
 
       <button
